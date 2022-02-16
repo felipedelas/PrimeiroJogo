@@ -1,27 +1,40 @@
-#include "SFML/Network.hpp"
+#include <iostream>
+#include <SFML/Network.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Audio.hpp>
 
 /*--------------------------------------------------------------------------------------------*/
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
-
+    sf::RenderWindow window(sf::VideoMode(500, 500), "Primeiro Jogo");   
+    sf::Event ev;
+    
+    //Loop do jogo
     while (window.isOpen())
     {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
+        while (window.pollEvent(ev)) {
+            switch (ev.type)
+            {
+            case sf::Event::Closed:window.close(); break;
+            case sf::Event::KeyPressed:
+                if (ev.key.code == sf::Keyboard::Escape)
+                {
+                    window.close(); break;
+                }
 
-        window.clear();
-        window.draw(shape);
-        window.display();
+            }
+
+            //Update
+            //Renderizar
+            window.clear(sf::Color::Red);//Limpa o frame antigo
+            window.display();//Desenha o jogo
+        }
     }
+
+
 
     return 0;
 }
