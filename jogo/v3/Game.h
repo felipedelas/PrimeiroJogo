@@ -8,8 +8,6 @@ class Game {
 private:
 	void InicializarVariaveis();
 	void InicializarJanela();
-	sf::RenderWindow* window;
-	sf::Event ev;
 public:
 	Game();//construtor
 	virtual ~Game();//destrutor
@@ -17,6 +15,4 @@ public:
 	//funçoes
 	void update();
 	void render();
-	const bool running() const;
-	void teste();
 };
